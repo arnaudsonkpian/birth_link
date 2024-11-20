@@ -3,21 +3,18 @@
 use App\Http\Controllers\AjoutDesAmisController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AmisSuggererController;
 use App\Http\Controllers\AnniversaireAvenirController;
 use App\Http\Controllers\AnniversairePasseController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThemepersonController;
+use App\Http\Controllers\ThemesPopulairesController;
 use App\Models\Friend;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Route;
 
 Route::get('/friends', function () {
     // Récupérez les amis depuis la base de données
@@ -68,3 +65,8 @@ Route::get('/anniversaire-passe', [AnniversairePasseController::class, 'index'])
 
 Route::get('/confirmation-des-amis', [AmisSuggererController::class, 'confirmation'])->name('confirmation-des-amis');
 Route::get('/friends', [FriendController::class, 'index'])->name('friends');
+
+Route::get('/themespopulaires', [ThemesPopulairesController::class, 'index'])->name('themespopulaires');
+
+Route::post('/store/theme-poulaires', [ThemesPopulairesController::class, 'store'])->name('store-theme');
+Route::get('/themes-populaires', [ThemesPopulairesController::class, 'getCards'])->name('themes-populaires');
